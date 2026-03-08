@@ -1,6 +1,4 @@
-from googletrans import Translator
-
-translator = Translator()
+from deep_translator import GoogleTranslator
 
 def normalize_query(query):
 
@@ -27,8 +25,7 @@ def normalize_query(query):
     sentence = " ".join(normalized)
 
     try:
-        translated = translator.translate(sentence, dest="en")
-        return translated.text
-    except Exception:
-        # if translation fails return original sentence
+        translated = GoogleTranslator(source="auto", target="en").translate(sentence)
+        return translated
+    except:
         return sentence
