@@ -4,7 +4,6 @@ translator = Translator()
 
 def normalize_query(query):
 
-    # simple Tanglish/Hinglish mapping
     mapping = {
         "enna": "what",
         "epdi": "how",
@@ -17,7 +16,6 @@ def normalize_query(query):
     }
 
     words = query.split()
-
     normalized = []
 
     for w in words:
@@ -28,7 +26,9 @@ def normalize_query(query):
 
     sentence = " ".join(normalized)
 
-    # translate to English if needed
-    translated = translator.translate(sentence, dest="en")
-
-    return translated.text
+    try:
+        translated = translator.translate(sentence, dest="en")
+        return translated.text
+    except Exception:
+        # if translation fails return original sentence
+        return sentence

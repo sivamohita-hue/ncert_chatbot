@@ -2,5 +2,4 @@ fastapi
 uvicorn
 requests
 beautifulsoup4
-translate
-pydantic
+googletrans==4.0.0-rc1
